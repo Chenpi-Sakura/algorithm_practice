@@ -18,27 +18,61 @@
 #include <vector>
 using namespace std;
 
-int solution(std::string v1, std::string v2) {
+int solution(std::string v1, std::string v2)
+{
     // Edit your code here
     string segment;
-    stringstream ss(v1); //定义数据流，能够使数据以数据流的形式传入
-    vector<int> numbers1;
-    
-    while (getline(ss, segment, '.')){
+    stringstream s1(v1);  // 定义数据流，能够使数据以数据流的形式传入。
+    vector<int> numbers1; // 定义一个数组，便于数据储存。
+
+    while (getline(s1, segment, '.'))
+    {
         numbers1.push_back(stoi(segment));
-    }//处理第一个version,将.之间的数字转存为数组n1里的数据
-    
-    stringstream ss(v2);
+    } // 处理第一个version,将.之间的数字转存为数组n1里的数据
+
+    stringstream s2(v2);
     vector<int> numbers2;
-    
-    while (getline(ss, segment, '.')){
+
+    while (getline(s2, segment, '.'))
+    {
         numbers2.push_back(stoi(segment));
     }
 
-    return -1;
+    int len1 = numbers1.size();
+    int len2 = numbers2.size();
+    if (len1 > len2)
+    {
+        for (int i = len2; i < len1; i++)
+        {
+            numbers2.push_back(0);
+        }
+    } // 补充数据，确保能进行后续的比较
+    else if (len1 < len2)
+    {
+        for (int i = len1; i < len2; i++)
+        {
+            numbers1.push_back(0);
+        }
+        len1 = len2;
+    }
+
+    for (int i = 0; i < len1; i++)
+    {
+        if (numbers1[i] > numbers2[i])
+        {
+            return 1;
+        }
+        else if (numbers1[i] < numbers2[i])
+        {
+            return -1;
+        }
+    }
+
+    return 0;
 }
 
-int main() {
+int main()
+{
     // Add your test cases here
 
     std::cout << (solution("0.1", "1.1") == -1) << std::endl;
@@ -48,7 +82,6 @@ int main() {
 
     return 0;
 }
-
 
 /*
 借助了cha桑的帮助，一个人实在是有点想不到。
