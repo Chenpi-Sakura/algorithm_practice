@@ -18,7 +18,7 @@
 #include <vector>
 using namespace std;
 
-int solution(std::string v1, std::string v2)
+int solution(string v1, string v2)
 {
     // Edit your code here
     string segment;
@@ -75,10 +75,10 @@ int main()
 {
     // Add your test cases here
 
-    std::cout << (solution("0.1", "1.1") == -1) << std::endl;
-    std::cout << (solution("1.0.1", "1") == 1) << std::endl;
-    std::cout << (solution("7.5.2.4", "7.5.3") == -1) << std::endl;
-    std::cout << (solution("1.0", "1.0.0") == 0) << std::endl;
+    cout << (solution("0.1", "1.1") == -1) << endl;
+    cout << (solution("1.0.1", "1") == 1) << endl;
+    cout << (solution("7.5.2.4", "7.5.3") == -1) << endl;
+    cout << (solution("1.0", "1.0.0") == 0) << endl;
 
     return 0;
 }
