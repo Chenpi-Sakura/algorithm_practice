@@ -1,31 +1,41 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
+#include <stdio.h>
 int main()
 {
-    int n;
-    cin >> n;
-    string num;
-    for (int i = 1, t = 0, len, sum; i <= 1000; i++)
+    int N, i, max, min, p, q, t1, t2, n1, n2;
+    scanf("%d", &N);
+    int a[N];
+    for (i = 0; i < N; i++)
     {
-        num = to_string(i);
-        len = num.size();
-        sum = 0;
-        for (int j = 0; j < len; j++)
+        scanf("%d", &a[i]);
+    }
+    max = a[0], min = a[0];
+    n1 = 0;
+    n2 = 0;
+    for (q = 0; q < N; q++)
+    {
+        if (a[q] < min)
         {
-            sum += num[j] - '0';
-        }
-        if (sum == n)
-        {
-            printf("%8d", i);
-            t++;
-            if (t % 6 == 0)
-            {
-                cout << endl;
-            }
+            min = a[q];
+            n1 = q;
         }
     }
-    cout << endl;
+    t1 = a[0];
+    a[0] = min;
+    a[n1] = t1;
+    for (p = 0; p < N; p++)
+    {
+        if (a[p] > max)
+        {
+            max = a[p];
+            n2 = p;
+        }
+    }
+    t2 = a[N - 1];
+    a[N - 1] = max;
+    a[n2] = t2;
+    for (i = 0; i < N; i++)
+    {
+        printf("%d ", a[i]);
+    }
     return 0;
 }

@@ -58,7 +58,7 @@ int main()
                 for (int y2 = 1; y2 <= n; y2++)
                 {
                     if (x2 < x1 || y2 < y1)
-                        continue;
+                        continue; // 避免出现左上角在右下角的右下方向
                     t = s[x2][y2] - s[x1 - 1][y2] - s[x2][y1 - 1] + s[x1 - 1][y1 - 1];
                     if (t > r)
                     {

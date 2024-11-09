@@ -17,24 +17,24 @@
 #include <algorithm>
 using namespace std;
 
-int a[500001];
-int d[500001];
+int a[5000001];
+int d[5000001];
 int main()
 {
-    int n, p;
+    int n, p, x, y, z, minSocre = 1e9;
     cin >> n >> p;
     for (int i = 1; i <= n; i++)
     {
         cin >> a[i];
     }
-    int x, y, z;
+
     for (int i = 1; i <= p; i++)
     {
         cin >> x >> y >> z;
         d[x] += z;
         d[y + 1] -= z;
     }
-    int minSocre = 1e9;
+
     for (int i = 1; i <= n; i++)
     {
         d[i] += d[i - 1];

@@ -32,12 +32,12 @@ Byteasar 想要给栅栏涂成一种颜色。思来想去，他选择了绿色�
 
 #include <iostream>
 using namespace std;
-
+ 
+long long n, m, y[1000005], b[1000005], r[1000005];
 int main()
 {
-    int n, m, c, d, v, sum = 0;
+    int c, d, v, sum = 0;
     cin >> n >> m;
-    int y[n + 1] = {0}, b[n + 1] = {0}, r[n + 1] = {0};
     for (int i = 1; i <= m; i++)
     {
         cin >> c >> d >> v;

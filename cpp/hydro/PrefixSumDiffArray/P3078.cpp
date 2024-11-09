@@ -24,6 +24,8 @@ Bessie's hand currently holds a_i cards of rank i (0 <= a_i <= 100000). Help her
 0 0  0 0 0
 Reflection:
 这个题目运用一维差分进行标记
+同理P1969也能直接标记
+免去后面计算的部分
 */
 
 #include <iostream>
@@ -33,19 +35,20 @@ int main()
 {
     long long n;
     cin >> n;
-    long long a[n + 1] = {0}, s[n + 1] = {0};
+    long long a[n + 1] = {0}, s[n + 1] = {0}; // 初始化数组
     for (long long i = 1; i <= n; i++)
     {
         cin >> a[i];
         s[i] = a[i] - a[i - 1];
+        // 输入数组并计算差分
     }
     long long sum1 = 0;
     for (long long i = 1; i <= n; i++)
     {
         if (s[i] > 0)
-            sum1 += s[i];
+            sum1 += s[i]; // 参考P1969的31行
     }
 
-    cout << s[i];
+    cout << sum1;
     return 0;
 }
