@@ -16,4 +16,24 @@
 
 - [相关习题](https://github.com/Chenpi-Sakura/algorithm_practice/tree/main/cpp/hydro/FindSort)
 
+#### III. 总结
+
+- 待编写
+
 ### 二.前缀和与差分
+
+#### I. 理论
+
+1. 一维前缀和
+2. 二维前缀和
+3. 一维差分
+4. 二维差分
+
+#### II. 练习
+
+- [相关习题](https://github.com/Chenpi-Sakura/algorithm_practice/tree/main/cpp/hydro/PrefixSumDiffArray)
+
+#### III. 总结
+
+- 待编写
+
