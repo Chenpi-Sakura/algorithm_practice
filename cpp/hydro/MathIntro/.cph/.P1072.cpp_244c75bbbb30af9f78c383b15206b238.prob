@@ -1,0 +1,1 @@
+{"name":"Local: P1072","url":"d:\\project_for_vscode\\cpp\\hydro\\MathIntro\\P1072.cpp","tests":[{"id":1731814321131,"input":"2 \n41 1 96 288 \n95 1 37 1776 \n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\project_for_vscode\\cpp\\hydro\\MathIntro\\P1072.cpp","group":"local","local":true}
