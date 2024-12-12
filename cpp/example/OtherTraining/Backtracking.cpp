@@ -9,7 +9,7 @@ using namespace std;
 vector<int> nums; // 数组
 int n, k;         // 输入量与组合数
 
-void backtrack(int start, int count, int sum)   
+void backtrack(int start, int count, int sum)
 {
     if (count == k)
     {
@@ -29,4 +29,5 @@ int main()
     for(int i = 0; i < n; i++)
         cin >> nums[i];
     backtrack(0, 0, 0);
+    return 0;
 }
