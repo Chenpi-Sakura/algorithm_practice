@@ -7,14 +7,14 @@ int main()
     for(i=0;i<n;i++)
     {
         scanf("%d",&s[i]);
-    }
+    }//输入
     int j,k,f;
     for(j=0;j<m;j++)
     {
-        f=s[i];
-        for(k=i-1;k>=0;k--)
+        f=s[i - 1];
+        for(k= i - 1;k >= 0;k--)
         {
-            s[k-1]=s[k];
+            s[k+1]=s[k];
         }
         s[0]=f;
     }

@@ -1,40 +1,38 @@
-#include <iostream>
+/*
+[HAOI2008] 圆上的整点
+题目描述
+求一个给定的圆(x^2+y^2=r^2)，在圆周上有多少个点的坐标是整数。
+
+输入格式
+r
+
+输出格式
+整点个数
+
+提示
+r≤2000000000
+
+
+这里的区域 以后再来探索吧
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
 
-int a[10][10];
+typedef long long LL;
 
 int main()
 {
-    int t;
-    cin >> t;
-    for (int i = 0; i < t; i++)
+    LL r, n = 0;
+    cin >> r;
+    for (LL i = 0; i * i < r * r; i++)
     {
-        int v = 0;
-        int n;
-        cin >> n;
-        for (int j = 0; j < n; j++)
-        {
-            for (int k = 0; k < n; k++)
-            {
-                cin >> a[j][k];
-            }
-        }
-        for (int j = 0; j < n; j++)
-        {
-            for (int k = 0; k < n; k++)
-            {
-                if (k < j && a[j][k] != 0)
-                {
-                    v = 1;
-                    break;
-                }
-            }
-            if(v)
-                break;
-        }
-        if (v == 0)
-            cout << "NO" << endl;
-        else
-            cout << "YES" << endl;
+        LL y = r * r - i * i;
+        LL qy = sqrt(y);
+        if (y == qy * qy)
+            n++;
     }
+    n *= 4;
+    cout << n;
+    return 0;
 }
