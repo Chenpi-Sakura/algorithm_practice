@@ -1,1 +1,5 @@
 .vscode/
+.ccls-cache/
+*.o
+*.out
+main
