@@ -23,7 +23,7 @@ P1090 [NOIP2004 提高组] 合并果子 / [USACO06NOV] Fence Repair G
 using namespace std;
 typedef long long LL;
 
-priority_queue<int, vector<int>, greater<int>> a;
+priority_queue<int, vector<int>, greater<int>> a;   //运用优先队列 保证最小的果子数在最上方
 
 int main()
 {

@@ -1,7 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//快速幂的迭代方式
+// 模板
+int quickpow(int a, int b, int p)
+{
+    int ans = 1 % p; // p 可能为 1
+    while (b)
+    {
+        if (b & 1) ans = (long long)ans * a % p;
+        a = (long long)a * a % p;
+        b >>= 1; // 二进制移位操作
+    }
+    return ans;
+}
+
+typedef long long LL;
+// 类似于上一个，乘法的实现
+LL multiply(LL a, LL b, LL p)
+{
+    LL ans = 0;
+    a = a % p;
+    while (b)
+    {
+        if (b & 1) ans = (ans + a) % p;
+        a = a * 2 % p;
+        b >>= 1;
+    }
+    return ans;
+}
+
+// 快速幂的迭代方式
 long long quickpow1(long long a, long long b, long long m)
 {
     long long result = 1;
@@ -13,12 +41,12 @@ long long quickpow1(long long a, long long b, long long m)
             result = (result * a) % m;
         a = (a * a) % m;
         b /= 2;
-    } 
+    }
 
     return result;
 }
 
-//快速幂的递归方法
+// 快速幂的递归方法
 long long quickpow2(long long a, long long b, long long m)
 {
     if (b == 0)
