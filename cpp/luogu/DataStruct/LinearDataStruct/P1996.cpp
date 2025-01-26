@@ -73,3 +73,31 @@ int main()
 
     return 0;
 }
+
+#include<bits/stdc++.h> 
+using namespace std;
+
+vector<int> a;
+
+int main( )
+{
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= n; i++) a.push_back(i);
+    int t = 0, p = 0;
+    while (!a.empty())
+    {
+        if(p >= a.size()) p = 0;
+        if (t + 1 == m)
+        {
+            cout << a[p] << " ";
+            a.erase(a.begin() + p);
+            t = 0;
+        }
+        else 
+        {
+            p++;
+            t++;
+        }
+    }
+    return 0;
+}
