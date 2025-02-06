@@ -23,50 +23,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 1e6 + 10;
+const int N = 1e7;
 int a[N];
 
 int main()
 {
     int n; cin >> n;
-    int lotime = 0;
-    for (int i = 0; i < n; i++)
+    int TimeRange = -1;
+    for (int i = 1; i <= n; i++)
     {
-        int b, e; cin >> b >> e;
-        a[b]++, a[e]--;
-        lotime = max(lotime, e);
+        int l, r;
+        cin >> l >> r;
+        a[l + 1]++; a[r + 1]--; // 挤奶时间区间左开右闭
+        TimeRange = max(TimeRange, r);
     }
 
-    for (int i = 1; i <= lotime; i++) a[i] += a[i - 1];
-
-    int jinai = 0, buji = 0;
-    bool jiguo = false;
+    for (int i = 1; i <= TimeRange; i++)
+    {
+        a[i] += a[i - 1];
+    }
 
     int i = 0;
-    while (i <= lotime)
-    {
-        while (a[i] == 0 && !jiguo) i++;
+    while (a[i] == 0) i++;
 
-        int Ljinai = 0, Lbuji = 0;
-        if (a[i] > 0)
+    int LMT = 0, LUT = 0, l, r;
+    while (i <= TimeRange)
+    {
+        if(a[i] > 0)
         {
-            jiguo = true;
-            while (a[i] > 0)
-            {
-                Ljinai++;
-                i++;
-            }
+            l = i;
+            while (a[i] > 0 && i <= TimeRange) i++;
+            r = i;
+            LMT = max(LMT, r - l);
         }
-        jinai = max(Ljinai, jinai);
-        if (a[i] == 0 && jiguo)
+        else if (a[i] == 0)
         {
-            while (a[i] == 0 && i <= lotime)
-            {
-                Lbuji++;
-                i++;
-            }
+            l = i;
+            while (a[i] == 0 && i <= TimeRange) i++;
+            r = i;
+            LUT = max(LUT, r - l);
         }
-        buji = max(Lbuji, buji);
     }
-    cout << jinai << " " << buji << endl;
+
+    cout << LMT << " " << LUT;
+    return 0;
 }

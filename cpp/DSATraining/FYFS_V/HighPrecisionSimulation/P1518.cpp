@@ -60,6 +60,6 @@ int mian()
 
     while (cow != far)
     {
-        if ()
+        
     }
 }
