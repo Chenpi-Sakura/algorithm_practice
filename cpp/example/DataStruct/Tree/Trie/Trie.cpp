@@ -1,3 +1,5 @@
+/*字典树，作用与哈希类似*/
+
 #include<bits/stdc++.h> 
 using namespace std;
 
