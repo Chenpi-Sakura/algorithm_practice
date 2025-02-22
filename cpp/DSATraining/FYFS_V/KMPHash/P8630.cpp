@@ -14,10 +14,48 @@
 输出格式
 一个整数，表示每行密码的所有排列在 s 中匹配次数的总和。
 */
-#include <bits/stdc++.h>
+#include<bits/stdc++.h> 
 using namespace std;
 
-int main()
-{
+const int N = 1e7;
+char s[N];
 
+int main( )
+{
+    cin >> s;
+
+    int n; cin >> n;
+    int ans = 0;
+    while (n--)
+    {
+        int cnt1[26] = {0};
+        char code[9]; cin >> code;
+        for (int i = 0; code[i]; i++)
+        {
+            int j = code[i] - 'a';
+            cnt1[j]++;
+        }
+        for (int i = 0; s[i + 7]; i++)
+        {
+            int cnt2[26] = {0};
+            for (int j = i; j < i + 8; j++)
+            {
+                int k = s[j] - 'a';
+                cnt2[k]++;
+            }
+
+            bool check = true;
+            for (int i = 0; i < 26; i++)
+            {
+                if (cnt1[i] != cnt2[i]) 
+                {
+                    check = false;
+                    break;
+                }
+            }
+            if (check) ans++;
+        }
+    }
+    cout << ans << endl;
+    return 0;
 }
