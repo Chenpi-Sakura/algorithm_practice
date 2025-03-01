@@ -13,7 +13,7 @@
 如果该图连通，则输出一个整数表示最小生成树的各边的长度之和。如果该图不连通则输出 orz。
 */
 
-// HeapPrim 更适合用于稀疏图，这样效率更高
+// HeapPrim 更适合用于稀疏图，这样效率更高 "Prim 注重点的扩张"
 
 #include <bits/stdc++.h>
 using namespace std;
