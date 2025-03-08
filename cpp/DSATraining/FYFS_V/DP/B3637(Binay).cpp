@@ -52,7 +52,6 @@ int main()
             int j = find(a[i]);
             b[j] = a[i];
         }
-        
     }
     cout << len << endl;
     return 0;
