@@ -35,7 +35,7 @@ int main()
     int n; cin >> n;
     for (int i = 1; i <= n; i++) cin >> h[i] >> v[i];
 
-    int top = 1;
+    int top = 0;
     for (int i = 1; i <= n; i++)
     {
         while (top > 0 && h[q[top]] < h[i])
@@ -46,7 +46,7 @@ int main()
         q[++top] = i;
     }
     
-    top = 1;
+    top = 0;
     for (int i = n; i > 0; i--)
     {
         while (top > 0 && h[q[top]] < h[i])
