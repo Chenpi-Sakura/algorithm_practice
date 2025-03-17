@@ -26,7 +26,7 @@ void dijkstra(int s)
             int v = ed.v, w = ed.w;
             if (d[v] > d[u] + w)
             {
-                d[v] = d[u] + w;
+                d[v] = d[u] + w; // different from Prim, there is add, not replace
                 q.push({-d[v], v});
             }
         }
