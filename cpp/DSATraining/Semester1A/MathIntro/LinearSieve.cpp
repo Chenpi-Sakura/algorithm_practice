@@ -19,8 +19,8 @@ void sieve(int n)
         for (int j = 0; i * prime[j] <= n; j++)
         {
             b[i * prime[j]] = false;
-            if (i % prime[j] == 0) // 此步的目的是不一次性把所有的某个数的倍数筛完。
-                break;
+            if (i % prime[j] == 0) break;
+            // 此步的目的是不一次性把所有的某个数的倍数筛完。    
         }
     }
 }

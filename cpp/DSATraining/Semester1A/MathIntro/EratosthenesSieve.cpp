@@ -1,3 +1,6 @@
+
+// 更高效率详见LinerSieve
+
 #include <bits/stdc++.h>
 using namespace std;
 
