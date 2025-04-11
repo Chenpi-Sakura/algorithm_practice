@@ -1,3 +1,27 @@
+/*
+B. 团队训练
+题目描述
+在 IT 园区 “NEIMARK”，有针对个人和团队的竞争性编程训练课程！
+在下一次团队训练课程中，将有 n 名学生参加，第 i 名学生的技能由一个正整数 ai 给出。
+
+如果一个团队的强度至少为 x，教练就认为这个团队是强大的。一个团队的强度计算方式为团队成员的数量乘以团队成员中最低的技能值。
+例如，如果一个团队由 4 名成员组成，他们的技能分别为 [5, 3, 6, 8]，那么该团队的强度为 4 * min([5, 3, 6, 8]) = 12。
+输出可能的强大团队的最大数量，前提是每个团队必须至少有一名成员，并且每个成员必须恰好属于一个团队。
+
+输入
+每个测试包含多个测试用例。第一行包含测试用例的数量 t (1 <= t <= 10^4)。接下来是测试用例的描述。
+每个测试用例的第一行包含两个整数 n 和 x (1 <= n <= 2 * 10^5, 1 <= x <= 10^9) —— 参加训练的学生人数以及被认为强大的团队的最小强度。
+每个测试用例的第二行包含 n 个整数 ai (1 <= ai <= 10^9) —— 每个学生的技能。
+保证所有测试用例中 n 的总和不超过 2 * 10^5。
+
+输出
+对于每个测试用例，输出强度至少为 x 的团队的最大可能数量。
+*/
+
+/*
+    先尝试使用贪心，由大到小来排
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -5,22 +29,22 @@ using namespace std;
 const int N = 2e5 + 5;
 int a[N];
 
-unsigned main()
+signed main()
 {
     int t; cin >> t;
     while (t--)
     {
         memset(a, 0, sizeof(a));
         int n, x; cin >> n >> x;
-        for (int i = 0; i < n; i++) cin >> a[i];
-        sort(a, a + n);
+        sort(a, a + n, greater<int>());
+        for (int i = 1; i <= n; i++) cin >> a[i];
         int ans = 0;
-        for (int i = 0; i < n; i++)
-        {
-            if (a[i] >= (n - i + x - 1) / x)
-            {  
-                int left = ()
-            }
+        int l = 0, r = n + 1;
+        while (l + 1 < r)
+        { // 找大于等于 x 的最后一位
+            int mid = (l + r) >> 1;
+            if (a[mid] * mid >= x) l = mid;
+            else r = mid;
         }
     }
     return 0;
