@@ -3,17 +3,16 @@ using namespace std;
 #define int long long
 
 typedef pair<int, int> PII;
-const int N = 1e7 + 5;
+const int N = 2e5 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
+char s[N], ans[N];
+
 void solve()
 {
-    int n, k; cin >> n >> k;
-    string s, cp; cin >> s;
-    cp = s;
-    int len = s.size();
-    for (int i = 0; i < len; i++)
+    int n, k; cin >> n >> k >> s;
+    for (int i = 0; i < n; i++)
     {
         if (cp[i] == '?')
         {
