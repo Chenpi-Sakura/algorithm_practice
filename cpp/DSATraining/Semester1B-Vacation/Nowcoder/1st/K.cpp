@@ -7,7 +7,10 @@ const int N = 2e5 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
-vector<int> a[N];
+int ans[N];
+vector<int> adj[N];
+map<int, int> label[N];
+int vis[N][4];
 
 void solve()
 {
@@ -15,33 +18,45 @@ void solve()
     for (int i = 1; i <= n; i++)
     {
         int d; cin >> d;
-        for (int j = 0; j < d; j++)
+        for (int j = 1; j <= d; j++)
         {
             int v; cin >> v;
-            a[i].push_back(v);
+            adj[i].push_back(v);
+            label[i][v] = j;
         }
     }
 
     for (int i = 1; i <= n; i++)
     {
-        // int isFirst = true;
-        queue<PII> order; order.push({i, 0});
-        set<PII> s; 
-        int x = i, y = a[i][0];
-        if (x > y) swap(x, y);
-        s.insert({x, y});
-        for (int i = 0; i < 2; i++)
+        for (int j = 1; j <= adj[i].size(); j++)
+        if (!vis[i][j])
         {
-            auto [u, j] = order.front(); order.pop();
-            j++;
-            if (j > a[u].size()) j = 0;
-            order.push({a[u][j], j});
-            x = a[u][j], y = u;
-            if (x > y) swap(x, y);
-            s.insert({x, y});
+            vector<PII> paths;
+            set<PII> app;
+
+            int cu = i, cd = j;
+
+            while (!vis[cu][cd])
+            {
+                vis[cu][cd] = 1;
+                paths.push_back({cu, cd});
+
+                int cv = adj[cu][cd - 1];
+                app.insert({min(cu, cv), max(cu, cv)});
+
+                cd = label[cv][cu] % adj[cv].size() + 1;
+                cu = cv;
+            }
+            for (auto p : paths)
+            {
+                if (p.second == 1)
+                {
+                    ans[p.first] = app.size();
+                }
+            }
         }
-        cout << s.size() << endl;
     }
+    for (int i = 1; i <= n; i++) cout << ans[i] << endl;
 }
 
 signed main()
