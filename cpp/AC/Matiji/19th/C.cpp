@@ -7,11 +7,9 @@ const int N = 1e5 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
-struct p {int i, x, y;};
-vector<p> ps;
-queue<p> win, los;
+struct player {int i, x, y;};
 
-bool cmp(p a, p b)
+bool cmp(player a, player b)
 {
     if (a.x == b.x) return a.i < b.i;
     else return a.x > b.x;
@@ -20,71 +18,36 @@ bool cmp(p a, p b)
 void solve()
 {
     int n, m; cin >> n >> m;
-    for (int i = 1; i <= n; i++)
+    vector<player> p(n), tp(n);
+    for (int i = 0; i < n; i++)
     {
-        int x, y; cin >> x >> y;
-        ps.push_back({i, x, y});
+        p[i].i = i + 1;
+        cin >> p[i].x >> p[i].y;
     }
-    sort(ps.begin(), ps.end(), cmp);
+    sort(p.begin(), p.end(), cmp);
+    vector<player> win(n / 2), los(n / 2);
     while (m--)
     {
+        int idx = 0;
         for (int i = 0; i < n; i+=2)
         {
-            if (ps[i].y < ps[i + 1].y) 
+            if (p[i].y > p[i + 1].y)
             {
-                ps[i + 1].x++;
-                win.push(ps[i + 1]);
-                los.push(ps[i]);
+                p[i].x++;
+                win[idx] = p[i];
+                los[idx++] = p[i + 1];
             }
             else
             {
-                ps[i].x++;
-                win.push(ps[i]);
-                los.push(ps[i + 1]);
+                p[i + 1].x++;
+                win[idx] = p[i + 1];
+                los[idx++] = p[i];
             }
         }
-        int cnt = 0;
-        while (win.size() || los.size())
-        {
-            if (win.size() && los.size())
-            {
-                if (win.front().x > los.front().x)
-                {
-                    ps[cnt++] = win.front();
-                    win.pop();
-                }
-                else if (win.front().x < los.front().x)
-                {
-                    ps[cnt++] = los.front();
-                    los.pop();
-                }
-                else 
-                {
-                    if (win.front().i < los.front().i)
-                    {
-                        ps[cnt++] = win.front();
-                        win.pop();
-                    }
-                    else 
-                    {
-                        ps[cnt++] = los.front();
-                        los.pop();
-                    }
-                }
-            }
-            while (win.size() && los.empty())
-            {
-                ps[cnt++] = win.front();
-                win.pop();
-            }
-            while (los.size() && win.empty())
-            {
-                ps[cnt++] = los.front();
-                los.pop();
-            }
-        }
+        merge(win.begin(), win.end(), los.begin(), los.end(), tp.begin(), cmp);
+        p.swap(tp);
     }
-    for (int i = 0; i < n; i++) cout << ps[i].i << ' ';
+    for (int i = 0; i < n; i++) cout << p[i].i << ' ';
 }
 
 signed main()

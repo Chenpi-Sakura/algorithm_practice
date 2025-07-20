@@ -3,41 +3,68 @@ using namespace std;
 #define int long long
 
 typedef pair<int, int> PII;
-const int N = 2e5 + 5;
+const int N = 1e5 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
-vector<int> col[N], row[N];
-
 void solve()
 {
-    int w, h, n; cin >> w >> h >> n;
-    for (int i = 0; i <= n; i++)
-    {
-        col[i].push_back(0); 
-        row[i].push_back(0);
-    }
+    int h, w, n; cin >> h >> w >> n;
+
+    vector<vector<int>> a(h + 1);
+    vector<vector<int>> b(w + 1);
+    vector<bool> ux(h + 1, false);
+    vector<bool> uy(w + 1, false);
+    vector<bool> used(n, false);
+
     for (int i = 0; i < n; i++)
     {
         int x, y; cin >> x >> y;
-        row[x].push_back(y);
-        col[y].push_back(x);
+        a[x].push_back(i);
+        b[y].push_back(i);
     }
+
     int q; cin >> q;
     while (q--)
     {
-        int op, t; cin >> op >> t;
-        if (op == 1)
+        int t; cin >> t;
+        if (t == 1)
         {
-            cout << row[t][0];
-            for (int i = 1; i < row[t].size(); i++)
+            int x; cin >> x;
+            if (ux[x]) cout << 0 << '\n';
+            else
             {
-                
+                int ans = 0;
+                for (int e : a[x])
+                {
+                    if (!used[e])
+                    {
+                        used[e] = true;
+                        ans++;
+                    }
+                }
+                ux[x] = true;
+                cout << ans << '\n';
             }
         }
-        else 
+        else
         {
-
+            int y; cin >> y;
+            if (uy[y]) cout << 0 << '\n';
+            else
+            {
+                int ans = 0;
+                for (int e : b[y])
+                {
+                    if (!used[e])
+                    {
+                        used[e] = true;
+                        ans++;
+                    }
+                }
+                uy[y] = true;
+                cout << ans << '\n';
+            }
         }
     }
 }
@@ -45,10 +72,11 @@ void solve()
 signed main()
 {
     ios::sync_with_stdio(0);
-    cin.tie(0); 
-    // cout.tie(0);
-    int T = 1; 
-    // cin >> T;
+    cin.tie(0);
+    cout.tie(0);
+    int T = 1;
+    //cin >> T;
     while (T--) solve();
     return 0;
 }
+
