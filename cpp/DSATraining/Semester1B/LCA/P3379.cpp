@@ -46,16 +46,17 @@ P3379 【模板】最近公共祖先（LCA）
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+#define endl "\n"
 
 typedef pair<int, int> PII;
-const int N = 1e7 + 5;
+const int N = 5e5 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
 vector<int> e[N];
-int dep[N], fa[N][20];
+int dep[N], fa[N][20]; // fa[u][i]是节点 u 的 2 ^ i 次方的父节点
 
-void dfs(int u , int father)
+void dfs(int u, int father)
 {// 先创建一个 ST表
     dep[u] = dep[father] + 1;
     fa[u][0] = father;
@@ -85,7 +86,7 @@ void solve()
         e[x].push_back(y);
         e[y].push_back(x);
     }
-    dfs(1, 0);
+    dfs(s, 0);
     for (int i = 1; i <= m; i++)
     {
         int a, b; cin >> a >> b;
