@@ -1,4 +1,5 @@
-/*
+/**
+ * @Title: LCA的倍增做法
  * @Author: Chenpi
  * @Date: 2025-07-21 13:35:46
  * @Link: https://www.luogu.com.cn/problem/P3379
