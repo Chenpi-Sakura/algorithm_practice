@@ -1,7 +1,7 @@
 /** 
  * @Author: Chenpi
- * @Date: 2025-07-22 22:26:21
- * @Link: https://codeforces.com/contest/2125/problem/A
+ * @Date: 2025-07-23 16:24:25
+ * @Link: https://codeforces.com/gym/624417/problem/C
  */
 #include <bits/stdc++.h>
 using namespace std;
@@ -15,9 +15,7 @@ const int inf = 0x3f3f3f3f;
 
 void solve()
 {
-    string s; cin >> s;
-    sort(s.begin(), s.end(), greater<char>());
-    cout << s << endl;
+    int
 }
 
 signed main()

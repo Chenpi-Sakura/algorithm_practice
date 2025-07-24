@@ -1,8 +1,3 @@
-/** 
- * @Author: Chenpi
- * @Date: 2025-07-22 22:26:21
- * @Link: https://codeforces.com/contest/2125/problem/A
- */
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -15,9 +10,12 @@ const int inf = 0x3f3f3f3f;
 
 void solve()
 {
-    string s; cin >> s;
-    sort(s.begin(), s.end(), greater<char>());
-    cout << s << endl;
+    int x, y; cin >> x >> y;
+    if (y % x != 0) cout << 0 << ' ' << 0 << endl;
+    else 
+    {
+        cout << 1 << ' ' << y / x << endl;
+    }
 }
 
 signed main()

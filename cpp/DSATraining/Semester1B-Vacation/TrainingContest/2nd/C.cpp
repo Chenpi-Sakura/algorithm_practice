@@ -1,23 +1,23 @@
-/** 
- * @Author: Chenpi
- * @Date: 2025-07-22 22:26:21
- * @Link: https://codeforces.com/contest/2125/problem/A
- */
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 #define endl "\n"
 
 typedef pair<int, int> PII;
-const int N = 5e5 + 5;
+const int N = 2e5 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
 void solve()
 {
-    string s; cin >> s;
-    sort(s.begin(), s.end(), greater<char>());
-    cout << s << endl;
+    int n; cin >> n;
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int x; cin >> x;
+        ans = max(x, ans);
+    }
+    cout << ans << endl;
 }
 
 signed main()

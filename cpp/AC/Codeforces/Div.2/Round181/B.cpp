@@ -1,7 +1,7 @@
 /** 
  * @Author: Chenpi
  * @Date: 2025-07-22 22:40:37
- * @Link: 
+ * @Link: https://codeforces.com/contest/2125/problem/B
  */
 #include <bits/stdc++.h>
 using namespace std;
