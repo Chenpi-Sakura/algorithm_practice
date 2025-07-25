@@ -1,8 +1,3 @@
-/** 
- * @Author: Chenpi
- * @Date: 2025-07-23 18:57:53
- * @Link: https://codeforces.com/gym/624051/problem/A
- */
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -15,12 +10,14 @@ const int inf = 0x3f3f3f3f;
 
 void solve()
 {
-    int x, y; cin >> x >> y;
-    if (y % x != 0) cout << 0 << ' ' << 0 << endl;
-    else 
+    int n; cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    sort(a.begin(), a.end());
+    for (int i = 0; i < n; i++)
     {
-        cout << 1 << ' ' << y / x << endl;
-    }
+        
+ 1   }
 }
 
 signed main()

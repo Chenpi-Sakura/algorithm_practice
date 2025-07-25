@@ -1,3 +1,8 @@
+/** 
+ * @Author: Chenpi
+ * @Date: 2025-07-23 19:37:11
+ * @Link: https://codeforces.com/gym/624051/problem/C
+ */
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long

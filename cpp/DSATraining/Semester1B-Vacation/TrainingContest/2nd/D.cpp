@@ -1,3 +1,8 @@
+/** 
+ * @Author: Chenpi
+ * @Date: 2025-07-23 19:55:37
+ * @Link: https://codeforces.com/gym/624051/problem/D
+ */
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -12,21 +17,15 @@ void solve()
 {
     int n; cin >> n;
     vector<int> a(n);
-    vector<PII> b;
-    int isSame = 0, ans = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) cin >> a[i];
+    int u = inf, l = 0;
+    for (int i = 0; i < n - 1; i++) 
     {
-        cin >> a[i];
-        if (b.empty()) b.push_back({a[i], a[i]});
-        else if (a[i] == b.back().second) continue;
-        else if (a[i] < b.back().second && b.back().second <= b.back().first) b.back().second = a[i];
-        else if (a[i] > b.back().second && b.back().second >= b.back().first) b.back().second = a[i];
-        else b.push_back({a[i], a[i]});
+        if (a[i + 1] > a[i]) u = min(u, (a[i + 1] + a[i]) / 2);
+        else if (a[i + 1] < a[i]) l = max(l, (a[i] + a[i + 1] + 1) / 2);
     }
-    for (auto x : b)
-    {
-        
-    }
+    if (l <= u) cout << l << endl;
+    else cout << -1 << endl;
 }
 
 signed main()

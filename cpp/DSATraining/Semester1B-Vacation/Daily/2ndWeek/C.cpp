@@ -15,7 +15,17 @@ const int inf = 0x3f3f3f3f;
 
 void solve()
 {
-    int
+    int n, k; cin >> n >> k;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    int p = n - 1;
+    for (int i = 0; i < min(n, k); i++)
+    {
+        int shift = a[p];
+        if (shift < 1 || shift > n) {cout << "No" << endl; return;}
+        else p = (p - shift + n) % n;
+    }
+    cout << "Yes" << endl;
 }
 
 signed main()
