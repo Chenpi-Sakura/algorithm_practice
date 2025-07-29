@@ -17,7 +17,7 @@
 */
 
 // 朴素做法
-
+/*
 #include<bits/stdc++.h> 
 using namespace std;
 
@@ -70,9 +70,10 @@ int main( )
     cout << ans << endl;
     return 0;
 }
+*/
 
 // 优化做法，我们制作了反向图，
-// 将 从每个点回到起点 的距离计算   转化为   从起点到每个点 的距离计算
+// 将 从每个点回到起点 的距离计算 **转化为** 从起点到每个点 的距离计算
 
 #include<bits/stdc++.h> 
 using namespace std;
