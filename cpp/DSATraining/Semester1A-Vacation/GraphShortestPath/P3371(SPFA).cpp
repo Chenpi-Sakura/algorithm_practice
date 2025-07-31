@@ -1,8 +1,9 @@
 #include<bits/stdc++.h> 
 using namespace std;
+#define int long long
 
 const int N = 1e5 + 5;
-const int inf = 2e9;
+const int inf = 2147483647;
 struct edge {int v, w;};
 vector<edge> e[N];
 queue<int> q;
@@ -22,7 +23,7 @@ bool spfa(int s)
             if (d[v] > d[u] + w)
             {
                 d[v] = d[u] + w;
-                cnt[v] = cnt[u] + 1;
+                cnt[v]++;
                 if (cnt[v] >= n) return true;
                 if (!vis[v]) q.push(v), vis[v] = 1;
             }

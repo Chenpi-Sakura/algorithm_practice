@@ -14,9 +14,8 @@ const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
 int n, m;
-int g[N][N], ways[N][N], vis[N * N];
-PII dis[N][N];
-vector<int> adj[N * N];
+int g[N][N], ways[N * N], dis[N * N];
+vector<PII> adj[N * N];
 
 int dx[] = {-2, -2, -1, -1, 1, 1, 2, 2};
 int dy[] = {1, -1, 2, -2, 2, -2, 1, -1};
@@ -25,7 +24,7 @@ int dy[] = {1, -1, 2, -2, 2, -2, 1, -1};
 // 二维坐标转化为一维坐标
 int point(int r, int c)
 {
-    return r * n + c;
+    return r * m + c;
 }
 
 void solve()
@@ -44,14 +43,16 @@ void solve()
 
     int s = point(sx, sy), e = point(ex, ey);
 
-    for (int i = 0; i < m; i++)
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < m; j++)
         {
             if (g[i][j] == 1 || g[i][j] == 2) continue;
-            int u = point(i, j);
 
             queue<PII> q; q.push({i, j});
+            vector<int> vis(n * m);
+
+            int u = point(i, j);
             vis[u] = 1;
 
             while (q.size())
@@ -66,53 +67,42 @@ void solve()
                     if (vis[v]) continue;
                     vis[v] = 1;
                     if (g[nx][ny] == 1) q.push({nx, ny});
-                    else 
-                    {
-                        
-                    }
+                    else adj[u].push_back({v, (g[nx][ny] == 0)});
                 }
             }
         }
     }
 
-
-    dis[sx][sy] = {0, 0};
-    ways[sx][sy] = 1;
-    priority_queue<pair<PII, PII>, vector<pair<PII, PII>>, greater<pair<PII, PII>>> pq;
-    pq.push({{0, 0}, {sx, sy}});
+    for (int i = 0; i < n * m; i++) dis[i] = inf;
+    priority_queue<PII> pq;
+    vector<int> vis(n * m);
+    dis[s] = 0;
+    ways[s] = 1;
+    pq.push({0 , s});
 
     while (pq.size())
     {
-        auto t = pq.top(); pq.pop();
-        PII d = t.first;
-        auto [x, y] = t.second;
-        if (d > dis[x][y]) continue;
+        int u = pq.top().second; pq.pop();
+        if (vis[u]) continue;
+        vis[u] = 1;
 
-        for (int i = 0; i < 8; i++)
+        for (auto [v, w] : adj[u])
         {
-            int nx = x + dx[i], ny = y + dy[i];
-            if (nx < 0 || nx >= n || ny < 0 || ny >= m || g[nx][ny] == 2) continue;
-
-            int cost = (g[nx][ny] == 0);
-            PII ndis = {d.first + cost, d.second + 1};
-
-            if (ndis < dis[nx][ny])
+            if (dis[u] + w < dis[v])
             {
-                dis[nx][ny] = ndis;
-                ways[nx][ny] = ways[x][y];
-                pq.push({dis[nx][ny], {nx, ny}});
+                dis[v] = dis[u] + w;
+                ways[v] = ways[u];
+                pq.push({-dis[v], v});
             }
-            else if (ndis == dis[nx][ny])
-            {
-                ways[nx][ny] += ways[x][y];
-            }
-        }   
+            else if (dis[u] + w == dis[v]) ways[v] += ways[u];
+        }
     }
-    if (dis[ex][ey].first == inf) cout << -1 << endl;
+
+    if (dis[e] == inf) cout << -1 << endl;
     else 
     {
-        cout << dis[ex][ey].first << endl;
-        cout << ways[ex][ey] << endl;
+        cout << dis[e] << endl;
+        cout << ways[e] << endl;
     }
 }
 
