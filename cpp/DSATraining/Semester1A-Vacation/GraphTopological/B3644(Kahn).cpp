@@ -21,14 +21,12 @@ int n; // 节点数
 bool toposort()
 {
     queue<int> q;
-    for (int i = 1; i <= n; i++)
-        if (din[i] == 0) q.push(i);
+    for (int i = 1; i <= n; i++) if (din[i] == 0) q.push(i);
     while (q.size())
     {
         int x = q.front(); q.pop();
         tp.push_back(x);
-        for (auto y : e[x])
-            if (--din[y] == 0) q.push(y);
+        for (auto y : e[x]) if (--din[y] == 0) q.push(y);
     }
     return tp.size() == n;
 }

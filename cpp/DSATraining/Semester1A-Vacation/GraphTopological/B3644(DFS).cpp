@@ -20,8 +20,7 @@ bool dfs(int x)
     for (int y : e[x])
     {
         if (c[y] < 0) return 0; // 发现祖先节点，有环
-        else if (!c[y])
-            if (!dfs(y)) return 0;
+        else if (!c[y]) if (!dfs(y)) return 0;
     }
     c[x] = 1;
     tp.push_back(x);
@@ -33,7 +32,8 @@ bool toposort()
     for (int i = 1; i <= n; i++)
     {
         if (!c[i])
-            if (!dfs(i)) return 0;
+            if (!dfs(i)) 
+                return 0;
     }
     reverse(tp.begin(), tp.end());
     return 1;
