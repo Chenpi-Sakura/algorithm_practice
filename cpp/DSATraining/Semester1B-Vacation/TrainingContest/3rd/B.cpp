@@ -1,3 +1,8 @@
+/**
+ * @Author: Chenpi
+ * @Date: 2025-07-30 19:23:54
+ * @Link:https://codeforces.com/gym/626001/problem/B
+ */
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -10,13 +15,15 @@ const int inf = 0x3f3f3f3f;
 
 void solve()
 {
-    int n; cin >> n;
+    int n;
+    cin >> n;
     int cur = 0;
     vector<int> p2;
     // 得到目前的2的次方
     for (int i = 0; i < n; i++)
     {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         while (a % 2 == 0)
         {
             cur++;
@@ -24,8 +31,8 @@ void solve()
         }
     }
     // 假如此时2的次方不为0且2的次方的个数大于等于n个
-    if (cur != 0 && cur >= n) 
-    { 
+    if (cur != 0 && cur >= n)
+    {
         cout << 0 << endl;
         return;
     }
@@ -37,7 +44,7 @@ void solve()
         {
             x++;
             t /= 2;
-        } 
+        }
         p2.push_back(x);
     }
     // 遍历，查找，看是否能满足大于等于n个
@@ -46,7 +53,8 @@ void solve()
     int ans = 0;
     for (int x : p2)
     {
-        if (cur >= n) break;
+        if (cur >= n)
+            break;
         cur += x;
         ans++;
     }
@@ -65,17 +73,20 @@ void solve()
     //     // cout << i << ' ' << cur << endl;
     //     if (cur >= n) break;
     // }
-    if (cur >= n) cout << ans << endl;
-    else cout << -1 << endl;
+    if (cur >= n)
+        cout << ans << endl;
+    else
+        cout << -1 << endl;
 }
 
 signed main()
 {
     ios::sync_with_stdio(0);
-    cin.tie(0); 
+    cin.tie(0);
     cout.tie(0);
     int T = 1;
     cin >> T;
-    while (T--) solve();
+    while (T--)
+        solve();
     return 0;
 }

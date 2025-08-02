@@ -4,84 +4,65 @@ using namespace std;
 #define endl "\n"
 
 typedef pair<int, int> PII;
-const int N = 5e5 + 5;
+const int N = 4e5 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
 bool cmp(PII a, PII b)
 {
-    int xa = a.second - a.first, xb = b.second - b.first;
-    if (xa == xb) return a.first < b.first;
-    else return xa < xb;
+    if (a.first != b.first) return a.first > b.first;
+    return a.second < b.second;
 }
 
 void solve()
 {
     int n, m; cin >> n >> m;
-    vector<PII> ops;
-    for (int i = 0; i < m; i++)
-    {
-        int l, r; cin >> l >> r;
-        ops.push_back({l, r});
-    }
+    vector<PII> ops(m);
+    for (int i = 0; i < m; i++) cin >> ops[i].first >> ops[i].second;
+
     sort(ops.begin(), ops.end(), cmp);
-    vector<PII> res;
+
+    vector<int> vis(2 * n + 1);
+    int lcnt = 0, lst = 2 * n + 1;
     for (int i = 0; i < m; i++)
     {
-        auto [l, r] = ops[i];
-        int flag = 1;
-        for (auto [ll, rr] : res)
+        if (ops[i].second >= lst) continue;
+        if (!vis[ops[i].first])
         {
-            if (l <= ll && r >= rr)
-            {
-                flag = 0;
-                break;
-            }
+            vis[ops[i].first] = 1;
+            lcnt++;
         }
-        if (flag) res.push_back({l, r});
+        lst = ops[i].first;
     }
-    vector<char> ans(2 * n + 1, ')');
-    if (res.size() > n)
+    if (lcnt > n)
     {
         cout << -1 << endl;
         return;
     }
-    for (auto [l, r] : res)
+
+    string ans = "";
+    int x = 0;
+
+    for (int i = 1; i <= 2 * n; i++)
     {
-        int i = l;
-        while (i <= r)
+        if (vis[i] || lcnt < n)
         {
-            if (ans[i] == ')')
-            {
-                ans[i] = '(';
-                break;
-            }
-            i++;
+            ans += '(';
+            x++;
+            if (!vis[i]) lcnt++;
         }
-    }
-    int cur = n - res.size();
-    for (int i = 1; cur > 0; i++)
-    {
-        if (ans[i] == ')')
+        else
         {
-            cur--;
-            ans[i] = '(';
+            ans += ')';
+            x--;
         }
-    }
-    string s = "";
-    int cnt = 0;
-    for (int i = n * 2; i >= 1; i--)
-    {
-        if (ans[i] == ')') cnt++;
-        else cnt--;
-        if (cnt < 0)
+        if (x < 0)
         {
             cout << -1 << endl;
             return;
         }
-        s = ans[i] + s;
     }
-    cout << s << endl;
+    cout << ans << endl;
 }
 
 signed main()
