@@ -1,3 +1,8 @@
+/** 
+ * @Author: Chenpi
+ * @Date: 2025-05-18 09:50:28
+ * @Link: https://ac.nowcoder.com/acm/contest/99909/C
+ */
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long

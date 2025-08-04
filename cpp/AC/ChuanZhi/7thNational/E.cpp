@@ -7,38 +7,51 @@ const int N = 1e6 + 5;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f;
 
-char a[N];
+int n, k;
+string s;
+int p0[N], p1[N];
+
+bool check(int L)
+{
+    if (L == 0) return true;
+
+    int d = max(0LL, k - (n - L));
+    int u = k;
+
+    for (int i = 0; i + L <= n; i++)
+    {
+        int j = i + L;
+        int o = p1[j] - p1[i];
+        if (o >= d && o <= u) return true;
+    }
+
+    for (int i = 0; i + L <= n; i++)
+    {
+        int j = i + L;
+        int z = p0[j] - p0[i];
+        if (z >= d && z <= u) return true;
+    }
+    return false;
+}
 
 void solve()
 {
-    int n, k; cin >> n >> k;
-    cin >> a;
-    int x = 0;
-    for (int i = 0; i < n; i++) 
+    cin >> n >> k >> s;
+    for (int i = 0; i < n; i++)
     {
-        a[i] -= '0';
-        if (a[i] == 0) x++;
+        p0[i + 1] = p0[i] + (s[i] == '0');
+        p1[i + 1] = p1[i] + (s[i] == '1');
     }
-    if (x > k)
+
+    int l = 0, r = n;
+
+    while (l < r)
     {
-        int l = 0, r = 0, cnt = 0, maxLen = 0;
-        while (r < n)
-        {
-            r++;
-            if (a[r] == 0) cnt++;
-            while (cnt > k && l <= r)
-            {
-                if (a[l] == 0) cnt--;
-                l++;
-            }
-            maxLen = max(maxLen, r - l + 1);
-        }
-        cout << maxLen << endl;
+        int mid = (l + r + 1) / 2;
+        if (check(mid)) l = mid;
+        else r = mid - 1;
     }
-    else
-    {
-        
-    }
+    cout << l << endl;
 }
 
 signed main()
