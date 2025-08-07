@@ -6,7 +6,7 @@ using namespace std;
 typedef pair<int, int> PII;
 const int N = 5e5 + 5;
 const int M = 1e9 + 7;
-const int inf = 0x3f3f3f3f3f3f3f3fLL;
+const int inf = 0x3f3f3f3f;
 
 void solve()
 {
