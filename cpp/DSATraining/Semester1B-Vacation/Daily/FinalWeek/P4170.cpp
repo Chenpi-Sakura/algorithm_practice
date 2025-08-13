@@ -9,15 +9,31 @@ using namespace std;
 #define endl "\n"
 
 typedef pair<int, int> PII;
-const int N = 5e5 + 5;
+const int N = 55;
 const int M = 1e9 + 7;
 const int inf = 0x3f3f3f3f3f3f3f3fLL;
+
+int f[N][N];
 
 void solve()
 {
     string s; cin >> s;
-    string t = "";
-    
+    int n = s.size();
+    s = " " + s;
+    for (int i = n; i > 0; i--) for (int j = i; j <= n; j++)
+    {
+        if (i == j) f[i][j] = 1;
+        else if (s[i] == s[j]) f[i][j] = f[i][j - 1];
+        else
+        {
+            f[i][j] = n;
+            for (int k = i; k < j; ++k)
+            {
+                f[i][j] = min(f[i][j], f[i][k] + f[k + 1][j]);
+            }
+        }
+    }
+    cout << f[1][n] << endl;
 }
 
 signed main()
