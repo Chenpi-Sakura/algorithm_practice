@@ -37,8 +37,7 @@ long long quickpow1(long long a, long long b, long long m)
 
     while (b > 0)
     {
-        if (b % 2 == 1)
-            result = (result * a) % m;
+        if (b % 2 == 1) result = (result * a) % m;
         a = (a * a) % m;
         b /= 2;
     }
@@ -49,11 +48,9 @@ long long quickpow1(long long a, long long b, long long m)
 // 快速幂的递归方法
 long long quickpow2(long long a, long long b, long long m)
 {
-    if (b == 0)
-        return 1;
+    if (b == 0) return 1;
     a %= m;
-    if (b % 2 == 1)
-        return (a * quickpow2(a, b - 1, m)) % m;
+    if (b % 2 == 1) return (a * quickpow2(a, b - 1, m)) % m;
     else
     {
         long long half = quickpow2(a, b / 2, m);
